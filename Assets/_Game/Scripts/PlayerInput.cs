@@ -13,15 +13,15 @@ public class PlayerInput : MonoBehaviour
     
 
     [SerializeField] private float maxChargeSeconds = 1f;
-    [SerializeField] private float pushPower = 10f;
+    [SerializeField] private float pushPower = 375f;
     [SerializeField] private GameObject ball;
 
-    private Rigidbody ballRigidBody;
+    private Rigidbody _ballRigidBody;
 
-    private void Start()
+    private void Awake()
     {
 
-        ballRigidBody = ball.GetComponent<Rigidbody>();
+        _ballRigidBody = ball.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -50,10 +50,10 @@ public class PlayerInput : MonoBehaviour
                         _powerPercent = (Time.time - _startTouchingTime) / maxChargeSeconds;
                     }
                     //yayi birak topa vur
-                    // pushPower * _powerPercent
-                    ballRigidBody.AddForce(new Vector3(0,0,pushPower * _powerPercent));
-                    Debug.Log(pushPower * _powerPercent);
-                    
+                    _ballRigidBody.AddForce(new Vector3(0,0,pushPower * _powerPercent));
+                    Debug.Log("add " + pushPower * _powerPercent + " force");
+                    //_gameStarted = true;
+
                 }
             }
         }
