@@ -14,14 +14,14 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private float maxChargeSeconds = 1f;
     [SerializeField] private float pushPower = 375f;
-    [SerializeField] private GameObject ball;
+    private GameObject _ball;
 
     private Rigidbody _ballRigidBody;
 
     private void Awake()
     {
-
-        _ballRigidBody = ball.GetComponent<Rigidbody>();
+        _ball = GameObject.FindWithTag("Ball");
+        _ballRigidBody = _ball.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -51,26 +51,8 @@ public class PlayerInput : MonoBehaviour
                     }
                     //yayi birak topa vur
                     _ballRigidBody.AddForce(new Vector3(0,0,pushPower * _powerPercent));
-                    Debug.Log("add " + pushPower * _powerPercent + " force");
                     //_gameStarted = true;
 
-                }
-            }
-        }
-        else // game started
-        {
-            if (Input.touchCount > 0)
-            {
-                Touch touch = Input.GetTouch(0);
-                
-                if (touch.phase == TouchPhase.Began)
-                {
-                    //kollari kaldir
-                }
-
-                if (touch.phase == TouchPhase.Ended)
-                {
-                    // kollari indir
                 }
             }
         }

@@ -12,7 +12,6 @@ public class PowerBounce : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Ball"))
         {
-            Debug.Log("pop");
             other.gameObject.GetComponent<Rigidbody>().AddExplosionForce(explosionPower, transform.position, _explosionRange);
             //add animation and sound
         }
